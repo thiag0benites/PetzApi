@@ -14,7 +14,7 @@ import cucumber.api.junit.Cucumber;
 								"json:target/cucumber-report/cucumber.json"
 							},
 					glue = {""},
-					tags = {""}
+					tags = {"@CONSULTA"}
 				)
 
 public class TestRunner {
