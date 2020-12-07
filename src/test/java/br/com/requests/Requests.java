@@ -12,9 +12,10 @@ import io.restassured.response.Response;
 
 public class Requests extends Log {
 
-	// **************************************************************************************************************************************
-	// GET
-	// **************************************************************************************************************************************
+// **************************************************************************************************************************************
+// GET
+// **************************************************************************************************************************************
+	// Consulta todas as estações
 	public void getEstacoes() {
 		
 		try {
@@ -27,6 +28,7 @@ public class Requests extends Log {
 
 	}
 
+	// Consulta uma estação
 	public void getEstacao(String id) {
 		
 		try {
@@ -39,6 +41,7 @@ public class Requests extends Log {
 
 	}
 
+	// Valida código de resposta
 	public void validaStatusCode(String statusCodeEsperado) {
 
 		Response response = Resposta.getResposta();
@@ -58,6 +61,7 @@ public class Requests extends Log {
 
 	}
 
+	// Valida schema dos json de resposta
 	public void validaSchema(String schemaJson) {
 
 		Response response = Resposta.getResposta();
@@ -72,6 +76,7 @@ public class Requests extends Log {
 
 	}
 	
+	// Valida um item do json de resposta
 	public void validaItemResposta(String itemNome, String itemValor) {
 
 		// Validação padrão rest
@@ -91,17 +96,11 @@ public class Requests extends Log {
 		
 	}
 	
-	// **************************************************************************************************************************************
-	// POST
-	// **************************************************************************************************************************************
+// **************************************************************************************************************************************
+// POST
+// **************************************************************************************************************************************
+	// Cadastra nova estação
 	public void postCadastrar(String externalId, String name, String latitude, String longitude, String altitude) {
-		
-//		JSONObject requestParams = new JSONObject();
-//		requestParams.put("external_id", "4");
-//		requestParams.put("name", "Estação4");
-//		requestParams.put("latitude", 17.76);
-//		requestParams.put("longitude", 12.43);
-//		requestParams.put("altitude", 10);
 		
 		Float flLatitude = Float.parseFloat(latitude);
 		Float flLongitude = Float.parseFloat(longitude);
@@ -126,9 +125,10 @@ public class Requests extends Log {
 		
 	}
 	
-	// **************************************************************************************************************************************
-	// PUT
-	// **************************************************************************************************************************************
+// **************************************************************************************************************************************
+// PUT
+// **************************************************************************************************************************************
+	// Altera dados de uma estação
 	public void putAlterar(String id, String externalId, String name, String latitude, String longitude, String altitude) {
 		
 		Float flLatitude = Float.parseFloat(latitude);
@@ -150,6 +150,28 @@ public class Requests extends Log {
 			
 		} catch (Exception e) {
 			relatorio(false, "Acesso.getUri(): " + Acesso.getUri() + "\nFalhou! Não foi possível enviar o PUT!");
+		}
+		
+	}
+	
+// **************************************************************************************************************************************
+// DELETE
+// **************************************************************************************************************************************
+	// Deleta estação
+	public void deleteExcluir(String id) {
+		
+		try {
+			Resposta.setResposta(given()
+					.relaxedHTTPSValidation()
+					.contentType(ContentType.JSON)
+					.queryParam("appid", Acesso.getApiKey())
+				  .when()
+				  	.delete(Acesso.getUri() + "/" + id));
+			
+			relatorio(true, "Acesso.getUri(): " + Acesso.getUri() + "\nPassou! DELETE para Excluir estação enviado com sucesso!");
+			
+		} catch (Exception e) {
+			relatorio(false, "Acesso.getUri(): " + Acesso.getUri() + "\nFalhou! Não foi possível enviar o DELETE!");
 		}
 		
 	}

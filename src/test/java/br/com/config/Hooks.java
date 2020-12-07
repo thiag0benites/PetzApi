@@ -10,7 +10,7 @@ public class Hooks {
 
 	@Before
 	public void getScenario(Scenario scenario) {
-		Hooks.scenario = scenario;
+		Hooks.scenario = scenario; // Pega cenario em execução
 
 		System.out.println("*** Iniciando os testes de API");
 	}

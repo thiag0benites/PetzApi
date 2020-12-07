@@ -1,0 +1,10 @@
+br\com\config\Hooks.class
+br\com\steps\DeleteExcluirSteps.class
+br\com\api\Acesso.class
+br\com\steps\PutAlterarSteps.class
+br\com\requests\Requests.class
+br\com\outputs\Log.class
+br\com\runner\TestRunner.class
+br\com\steps\PostCadastroSteps.class
+br\com\api\Resposta.class
+br\com\steps\GetConsultasSteps.class

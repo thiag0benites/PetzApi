@@ -1,5 +1,7 @@
 package br.com.api;
 
+// Dados básicos para envio da requisição
+
 public class Acesso {
 
 	private static String uri = "http://api.openweathermap.org/data/3.0/stations";

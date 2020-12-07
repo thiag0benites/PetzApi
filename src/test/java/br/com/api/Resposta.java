@@ -2,6 +2,8 @@ package br.com.api;
 
 import io.restassured.response.Response;
 
+// Resposta das requisições
+
 public class Resposta {
 
 	private static Response resposta;

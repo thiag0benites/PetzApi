@@ -1,0 +1,27 @@
+{
+    "items":{
+        "type": "object",
+            "properties": { 
+            "id": { "type": "string" },
+            "created_at":{"type": "string"},
+            "updated_at": { "type": "string" },
+            "external_idVersion":{"type": "string"},
+            "name":{"type": "string"},
+            "longitude":{"type": "integer"},
+            "latitude":{"type": "integer"},
+            "altitude":{"type": "integer"},
+            "rank":{"type": "integer"}
+        },
+        "required": [
+            "id",
+            "created_at",
+            "updated_at",
+            "external_id",
+            "name",
+            "longitude",
+            "latitude",
+            "altitude",
+            "rank"
+        ]
+    }
+}
