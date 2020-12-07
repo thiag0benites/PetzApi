@@ -126,46 +126,32 @@ public class Requests extends Log {
 		
 	}
 	
+	// **************************************************************************************************************************************
+	// PUT
+	// **************************************************************************************************************************************
+	public void putAlterar(String id, String externalId, String name, String latitude, String longitude, String altitude) {
+		
+		Float flLatitude = Float.parseFloat(latitude);
+		Float flLongitude = Float.parseFloat(longitude);
+		int intAltitude = Integer.parseInt(altitude);
+		
+		String strJson = "{\"external_id\":\"" + externalId + "\",\"name\":\"" + name + "\",\"latitude\":" + flLatitude + ",\"longitude\":" + flLongitude + ",\"altitude\":" + intAltitude + "}";
+
+		try {
+			Resposta.setResposta(given()
+					.relaxedHTTPSValidation()
+					.contentType(ContentType.JSON)
+					.queryParam("appid", Acesso.getApiKey())
+					.body(strJson)
+				  .when()
+				  	.put(Acesso.getUri() + "/" + id));
+			
+			relatorio(true, "Acesso.getUri(): " + Acesso.getUri() + "\nPassou! PUT para Alterar dados da estação enviado com sucesso!");
+			
+		} catch (Exception e) {
+			relatorio(false, "Acesso.getUri(): " + Acesso.getUri() + "\nFalhou! Não foi possível enviar o PUT!");
+		}
+		
+	}
 	
-//	public void get(String endPoint, String statusCodeEsperado, String parametro, String valorParam) {
-//
-//		if (parametro == null) {
-//
-//			response = given().relaxedHTTPSValidation().when().get(Acesso.getUri() + endPoint);
-//
-//		} else {
-//
-//			response = given().relaxedHTTPSValidation().param(parametro, valorParam).when().get(Acesso.getUri() + endPoint);
-//
-//		}
-//
-//		String body = response.body().asString();
-//		relatorio(body);
-//		Assert.assertEquals(Integer.parseInt(statusCodeEsperado), response.statusCode());
-//
-//	}
-//
-//	public void getContaPaginas(String endPoint, String pagina, String statusCode, String quant) {
-//
-//		response = given().relaxedHTTPSValidation().param("Page", pagina).when().get(Acesso.getUri() + endPoint);
-//
-//		String body = response.body().asString();
-//
-//		List<String> jsonResponse = response.jsonPath().getList("$");
-//		relatorio(body);
-//
-//		Assert.assertEquals(Integer.parseInt(statusCode), response.statusCode());
-//		Assert.assertEquals(Integer.parseInt(quant), jsonResponse.size());
-//	}
-
-
-//
-//	public void validaSchema(String endPoint, String statusCodeEsperado, String parametro, String valorParam,
-//			String schemaJson) {
-//
-////		get(endPoint, statusCodeEsperado, parametro, valorParam);
-//		response.then().assertThat().body(matchesJsonSchemaInClasspath(schemaJson + ".json"));
-//
-//	}
-//	
 }

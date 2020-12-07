@@ -9,7 +9,7 @@ Funcionalidade: Cadastrar estação metereológica
   Esquema do Cenario: CT03 : Cadastra estação
     Dado que envio um POST para cadastrar estacao com o corpo <external_id>, <name>, <latitude>, <longitude>, <altitude>
     Quando codigo de resposta e "201"
-    Entao valido o Schema "cadastraEstacao"
+    Entao valido o Schema "cadastraAlterarEstacao"
 
     Exemplos: 
       | external_id | name        | latitude | longitude | altitude |
